@@ -13,4 +13,4 @@ class GatheringSkills:
         self.wc_lvl = wc_lvl
 
 if __name__ == '__main__':
-    print('Please run rs3.py instead.')
+    print('Please run runescape_simulation.py instead.')

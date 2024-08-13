@@ -63,4 +63,4 @@ class Utils:
 util = Utils()
 
 if __name__ == '__main__':
-    print('please run rs3.py instead.')
+    print('Please run runescape_simulation.py instead.')
