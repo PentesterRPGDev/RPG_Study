@@ -13,15 +13,22 @@ class Combat:
         ''' Responsible for melee fights. '''
         print(f'{char.name} is fighting {mob.name}')
         while cbt.is_alive(char):
-            print(f'{mob.name} has {mob.hp} hp.\n{char.name} has {char.hp} hp.\n')
+            print(
+                f'{mob.name} has {mob.hp} hp.\n'
+                f'{char.name} has {char.hp} hp.\n'
+                )
             mob.hp -= char.melee_dmg()
             char.hp -= mob.melee_dmg()
             if not cbt.is_alive(mob):
-                print(f'{mob.name} is dead.\n')
+                print(
+                    f'{mob.name} is dead.\n'
+                    )
                 util.drop(mob, char)
                 break
             if not cbt.is_alive(char):
-                print(f'You died fighting against {mob.name}.')
+                print(
+                    f'You died fighting against {mob.name}.'
+                    )
                 break
 
 cbt = Combat()
