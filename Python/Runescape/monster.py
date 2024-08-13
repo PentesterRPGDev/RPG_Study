@@ -1,4 +1,8 @@
 ''' Responsible script for creating monsters. '''
+from random import randint
+from utils import util
+
+
 class Monster:
     ''' Create monsters of runescape '''
     def __init__(self, name, hp, atk_lvl, str_lvl, def_lvl, xp) -> None:
@@ -15,7 +19,8 @@ class Monster:
 
     def melee_dmg(self) -> int:
         ''' Calculates the melee damage made by the user.'''
-        dmg = 0.5 + (self.str_lvl * 64 / 640)
+        dmg = 0.5 + (self.str_lvl * randint(0, 65) / 640)
+        util.slow_txt(f'{self.name} hits {int(round(dmg))}.\n')
         return int(round(dmg))
 
 goblin = Monster('Goblin', 5, 1, 1, 0, 5)
@@ -26,8 +31,16 @@ goblin.bag = [
     {'item name': 'Bronze Arrows', 'quantity': 100}
 ]
 
-green_dragon = Monster('Green Dragon', 200, 30, 30, 30, 1000)
-green_dragon.bag = [
+spider = Monster('Spider', 5, 1, 1, 0, 5)
+spider.bag = [
+    {'item name': 'Gold Coins', 'quantity': 10},
+    {'item name': 'Bronze Sword', 'quantity': 1},
+    {'item name': 'Gold Coins', 'quantity': 10},
+    {'item name': 'Bronze Arrows', 'quantity': 100}
+]
+
+baby_dragon = Monster('Baby Dragon', 50, 1, 99, 1, 1000)
+baby_dragon.bag = [
     {'item name': 'Gold Coins', 'quantity': 10000},
     {'item name': 'Rune Sword', 'quantity': 1},
     {'item name': 'Air Runes', 'quantity': 500}
