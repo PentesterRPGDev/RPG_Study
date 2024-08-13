@@ -27,4 +27,4 @@ class Combat:
 cbt = Combat()
 
 if __name__ == '__main__':
-    print('Please run runescape_simulation.py instead.')
+    print('please run runescape_simulation.py instead.')

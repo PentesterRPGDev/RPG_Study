@@ -1,13 +1,10 @@
 ''' Create runescape simulation game. '''
-from os import system
 from player import user
 from monster import goblin, spider, baby_dragon
 from utils import util
 from combat import cbt
 
 if __name__ == '__main__':
-    system('clear')
-    util.gain_xp(user.str_lvl, 10)
     util.slow_txt(f'\n{user}')
     util.slow_txt(f'\n{goblin}')
     util.slow_txt(f'\n{spider}')
