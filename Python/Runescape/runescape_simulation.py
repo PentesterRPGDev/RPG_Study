@@ -15,5 +15,3 @@ if __name__ == '__main__':
     util.check_bag(user)
     cbt.melee(user, spider)
     util.check_bag(user)
-    cbt.melee(user, baby_dragon)
-    util.check_bag(user)

@@ -5,7 +5,7 @@ class CombatSkills(CombatSkillsExp):
     ''' Responsible for all combat skills of the Player class. '''
     def __init__(self) -> None:
         super().__init__()
-        self.hp_lvl: int = 10
+        self.hp: int = 10
         self.atk_lvl: int = 1
         self.str_lvl: int = 1
         self.def_lvl: int = 1
