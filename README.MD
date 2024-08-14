@@ -2,14 +2,15 @@
 
 <h2 align="center">Studying full-stack development</h3>
 
-<table>
+<table align="center">
   <tr>
-    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/game_info.md"><b>Home<br></b></a></td>
-    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/install_beta.md"><b>Python<br></b></a></td>
-    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/updates.md"><b>Django<br></b></a></td>
-    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/preview.md"><b>Html<br></b></a></td>
-    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/forums.md"><b>Css<br></b></a></td>
-    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/support.md"><b>JavaScript<br></b></a></td>
+    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/game_info.md"><b>Home</b></a></td>
+    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/tree/main/Python"><b>Python</b></a></td>
+    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/updates.md"><b>Django</b></a></td>
+    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/preview.md"><b>Html</b></a></td>
+    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/forums.md"><b>Css</b></a></td>
+    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/support.md"><b>JavaScript</b></a></td>
+    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/support.md"><b>About</b></a></td>
       </td>
   </tr>
 </table>
@@ -17,14 +18,10 @@
 <div class="social-icons">
     <a href="https://www.linkedin.com/in/ricardo--cravo/"><img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="LinkedIn" width="4%"/></a>
     <a href="https://www.instagram.com/promote_joy/"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png" alt="Instagram" width="4%"/></a>
-    <a href="mailto:pentesterrpg@gmail.com"><img src="https://img.icons8.com/fluent/48/000000/gmail.png" alt="Email" width="4%"/></a>
+    <a href="mailto:ricardo1992cravo@gmail.com"><img src="https://img.icons8.com/fluent/48/000000/gmail.png" alt="Email" width="4%"/></a>
 </div>
 
 <a href="https://www.buymeacoffee.com/pentesterrpg" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="Buy Me A Coffee" style="height:40px !important;width: 150px !important;" ></a>
-
-<p align="center">
-  <img src="Game_PentesterRPG/Kingdom_PentesterRPG_Data/Codex/Monster/boss00010.jpeg" alt="Boss presentation" />
-</p>
 
 <!-- markdownlint-enable MD033 MD041 -->
 
@@ -43,7 +40,7 @@ git clone https://github.com/Ricardocravo/PentesterRPG.git
 wget https://github.com/Ricardocravo/PentesterRPG.git
 ```
 
-- **More coming soon** [Beta](https://github.com/Ricardocravo/PentesterRPG.git)
+- **More coming soon** [Beta](https://github.com/RPG-Study/RPG_Study)
 
 ***
 
@@ -53,17 +50,9 @@ wget https://github.com/Ricardocravo/PentesterRPG.git
 
 <!-- markdownlint-enable MD033 MD041 -->
 
-- Frequently asked questions [Beta](https://github.com/Ricardocravo/PentesterRPG)
+- Frequently asked questions [Beta](https://github.com/RPG-Study/RPG_Study)
 
-- **[Troubleshooting:](https://github.com/Ricardocravo/PentesterRPG)**
-
-- Updates[Beta](/workspaces/PentesterRPG/Game_PentesterRPG/Kingdom_PentesterRPG_Data/Patcher/UPDATES.md)
-
-- **[Security Policy](Game_PentesterRPG/Kingdom_PentesterRPG_Data/PentesterRPG_Markdown/Main_Sys/Instructions/SECURITY_POLICY.md)**
-
-- **[Security](SECURITY.md)**
-
-- **[Copyrights](Game_PentesterRPG/Copyright/copyright.txt)**
+- **[Copyrights](https://github.com/RPG-Study/RPG_Study)**
 
 ***
 
