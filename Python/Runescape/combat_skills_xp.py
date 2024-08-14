@@ -1,0 +1,14 @@
+''' Responsible for xp count in combat skills. '''
+
+class CombatSkillsExp:
+    ''' Class that takes care of xp. '''
+    def __init__(self) -> None:
+        self.hp_xp: int = 1
+
+    def __str__(self) -> str:
+        return f'Hp xp: {self.hp_xp}.'
+
+if __name__ == '__main__':
+    print(
+        'Run runescape_simulation.py instead.'
+    )

@@ -56,9 +56,17 @@ class Utils:
                     break
 
     @staticmethod
-    def gain_xp(user_skill_xp, xp) -> None:
-        ''' Gain xp on a specific skill. '''
-        user_skill_xp += xp
+    def lvl_up(user_skill_lvl: int, class_skill_xp: int) -> None:
+        ''' Gain lvl on a specific skill. '''
+        user_skill_lvl += class_skill_xp
+
+    @staticmethod
+    def xp_up(class_skill_xp: int, xp: int) -> int:
+        ''' Gain xp on specific skill. '''
+        class_skill_xp += xp
+        print(class_skill_xp)
+        print(xp)
+        return class_skill_xp
 
 util = Utils()
 
