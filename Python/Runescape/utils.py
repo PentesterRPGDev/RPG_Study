@@ -4,7 +4,6 @@ Responsible script to make game utils.
 Import time to slowdown printed text.
 
 '''
-
 import time
 
 class Utils:
@@ -56,17 +55,14 @@ class Utils:
                     break
 
     @staticmethod
-    def lvl_up(user_skill_lvl: int, class_skill_xp: int) -> None:
+    def lvl_up(char, xp: int) -> None:
         ''' Gain lvl on a specific skill. '''
-        user_skill_lvl += class_skill_xp
+        char.hp_lvl += xp
 
     @staticmethod
-    def xp_up(class_skill_xp: int, xp: int) -> int:
+    def xp_up(char, xp: int) -> None:
         ''' Gain xp on specific skill. '''
-        class_skill_xp += xp
-        print(class_skill_xp)
-        print(xp)
-        return class_skill_xp
+        char.hp_xp += xp
 
 util = Utils()
 

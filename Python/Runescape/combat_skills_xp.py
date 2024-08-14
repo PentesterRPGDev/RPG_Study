@@ -3,7 +3,7 @@
 class CombatSkillsExp:
     ''' Class that takes care of xp. '''
     def __init__(self) -> None:
-        self.hp_xp: int = 1
+        self.hp_xp: int = 0
 
     def __str__(self) -> str:
         return f'Hp xp: {self.hp_xp}.'

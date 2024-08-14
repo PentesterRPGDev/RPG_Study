@@ -56,18 +56,6 @@ class Player(CombatSkills, GatheringSkills):
 system('clear')
 user = Player()
 system('clear')
-print(
-    '10 goblins have been killed. You won 125xp.'
-    )
-util.xp_up(user.hp_xp, 125)
-print(
-    f'{user.name} has {user.hp_xp} xp in hp.'
-)
-util.lvl_up(user.hp_lvl, 1)
-print(
-    f'Congratulations {user.name}!!!'
-    f'Your hp lvl has increased to {user.hp_lvl}.'
-)
 
 if __name__ == "__main__":
     print('please run runescape_simulation.py instead.')
