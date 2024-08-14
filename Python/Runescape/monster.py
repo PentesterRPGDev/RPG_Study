@@ -20,7 +20,9 @@ class Monster:
     def melee_dmg(self) -> int:
         ''' Calculates the melee damage made by the user.'''
         dmg = 0.5 + (self.str_lvl * randint(0, 65) / 640)
-        util.slow_txt(f'{self.name} hits {int(round(dmg))}.\n')
+        util.slow_txt(
+            f'{self.name} hits {int(round(dmg))}.\n'
+            )
         return int(round(dmg))
 
 goblin = Monster('Goblin', 5, 1, 1, 0, 5)

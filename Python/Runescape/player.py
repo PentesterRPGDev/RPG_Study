@@ -42,7 +42,10 @@ class Player(CombatSkills, GatheringSkills):
         while True:
             nickname = input('Adventurer nickname:\n> ')
             if not nickname.isalpha():
-                util.slow_txt('Invalid nickname.')
+                util.slow_txt(
+                    f'{nickname} is an invalid nickname.\n'
+                    'Please do not use digits or symbols.'
+                    )
             else:
                 self._name = nickname
                 break
@@ -50,7 +53,9 @@ class Player(CombatSkills, GatheringSkills):
     def melee_dmg(self) -> int:
         ''' Calculates the melee damage made by the user.'''
         dmg = 0.5 + (self.str_lvl * randint(0, 65) / 640)
-        util.slow_txt(f'{self.name} hits {int(round(dmg))}.\n')
+        util.slow_txt(
+            f'{self.name} hits {int(round(dmg))}.\n'
+            )
         return int(round(dmg))
 
 system('clear')

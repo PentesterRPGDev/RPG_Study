@@ -11,16 +11,25 @@ class Combat:
     @staticmethod
     def melee(char, mob) -> None:
         ''' Responsible for melee fights. '''
-        util.slow_txt(f'\n{char.name} is fighting {mob.name}.')
+        util.slow_txt(
+            f'{char.name} is fighting {mob.name}.\n'
+            )
         while cbt.is_alive(char):
-            util.slow_txt(f'\n{mob.name} has {mob.hp} hp.\n{char.name} has {char.hp} hp.\n')
+            util.slow_txt(
+                f'{mob.name} has {mob.hp} hp.\n'
+                f'{char.name} has {char.hp} hp.\n'
+                )
             mob.hp -= char.melee_dmg()
             if not cbt.is_alive(mob):
-                util.slow_txt(f'{mob.name} is dead.\n')
+                util.slow_txt(
+                    f'{mob.name} is dead.\n'
+                    )
                 util.drop(mob, char)
                 break
             if not cbt.is_alive(char):
-                util.slow_txt(f'You died fighting against {mob.name}.')
+                util.slow_txt(
+                    f'You died fighting against {mob.name}.'
+                    )
                 break
             char.hp -= mob.melee_dmg()
 

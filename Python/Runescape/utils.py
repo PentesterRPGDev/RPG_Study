@@ -35,7 +35,9 @@ class Utils:
         bag_items: str = ''
         for item in character.bag:
             bag_items += f'{item["quantity"]}x {item["item name"]}\n'
-        util.slow_txt(f'\n{character.name} bag:\n{bag_items}')
+        util.slow_txt(
+            f'\n{character.name} bag:\n{bag_items}'
+            )
         return bag_items
 
     @staticmethod
