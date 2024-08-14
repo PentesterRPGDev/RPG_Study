@@ -5,7 +5,7 @@
 <table align="center">
   <tr>
     <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/game_info.md"><b>Home</b></a></td>
-    <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/tree/main/Python"><b>Python</b></a></td>
+    <td><p align="center"><a href="https://github.com/RPG-Study/RPG_Study/tree/main/Python"><b>Python</b></a></td>
     <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/updates.md"><b>Django</b></a></td>
     <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/preview.md"><b>Html</b></a></td>
     <td><p align="center"><a href="https://github.com/Ricardocravo/PentesterRPG/blob/main/Markdown/forums.md"><b>Css</b></a></td>
