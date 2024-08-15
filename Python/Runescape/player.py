@@ -7,13 +7,12 @@ from utils import util
 
 class Player(CombatSkills, GatheringSkills):
     ''' Create player of runescape. '''
-    def __init__(self, name: str = '', active_melee_skill: int = 0) -> None:
+    def __init__(self, name: str = '') -> None:
         super().__init__()
         GatheringSkills.__init__(self)
         self.name = name
         self.combat_skills: CombatSkills = CombatSkills()
         self.gathering_skills: GatheringSkills = GatheringSkills()
-        self.active_melee_skill = active_melee_skill
         self.bag: list = [
             {'item name': 'Gold Coins', 'quantity': 0},
             {'item name': 'Bronze Sword', 'quantity': 1}
@@ -49,41 +48,6 @@ class Player(CombatSkills, GatheringSkills):
             else:
                 self._name = nickname
                 break
-
-    @property
-    def active_melee_skill(self) -> int:
-        '''
-
-        Getter for atk, str, def skill as active.
-        Activate melee skill based on user choice. 
-        
-        '''
-        return self._active_melee_skill
-
-    @active_melee_skill.setter
-    def active_melee_skill(self, choice: str) -> None:
-        '''
-        Setter for active melee skill.
-        Rule: Only 1 of the 3 skills can be choosen.
-        '''
-        while True:
-            choice = input(
-                'Choose a melee skill to train:\n'
-                '1: If you want to train atk.\n'
-                '2: If you want to train str.\n'
-                '3: If you want to train def.\n> '
-                )
-            if choice in ("1"):
-                self._active_melee_skill = self.atk_lvl
-                break
-            if choice in ("2"):
-                self._active_melee_skill = self.str_lvl
-                break
-            if choice in ("3"):
-                self._active_melee_skill = self.def_lvl
-                break
-            if choice not in ('1', '2', '3'):
-                print('Invalid choice.')
 
     def melee_dmg(self) -> int:
         ''' Calculates the melee damage made by the user.'''
