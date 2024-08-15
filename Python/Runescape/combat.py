@@ -1,5 +1,6 @@
 ''' Responsible for combat mechanics of runescape. '''
 from utils import util
+from player import user
 
 class Combat:
     ''' Responsible class for combat. '''
@@ -16,17 +17,18 @@ class Combat:
             )
         while cbt.is_alive(char):
             util.slow_txt(
-                f'{mob.name} has {mob.hp} hp.\n'
+                f'{mob.name} has {mob.hp} hp. '
                 f'{char.name} has {char.hp} hp.\n'
                 )
             mob.hp -= char.melee_dmg()
             if not cbt.is_alive(mob):
                 util.slow_txt(
-                    f'{mob.name} is dead.\n'
-                    f'{char.name} has earned {mob.xp}xp.'
+                    f'{mob.name} is dead.\n\n'
+                    f'{char.name} has earned {mob.xp} atk xp '
+                    f'and {mob.hp_xp} hp xp.\n'
                     )
-                util.xp_up(char, mob.xp)
-                print(f'{char.hp_xp}')
+                util.xp_up(user, 'atk', mob.xp)
+                util.xp_up(user, 'hp', mob.hp_xp)
                 util.drop(mob, char)
                 break
             if not cbt.is_alive(char):

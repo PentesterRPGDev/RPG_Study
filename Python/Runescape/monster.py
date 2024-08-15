@@ -5,7 +5,7 @@ from utils import util
 
 class Monster:
     ''' Create monsters of runescape '''
-    def __init__(self, name, hp, atk_lvl, str_lvl, def_lvl, xp) -> None:
+    def __init__(self, name, hp, atk_lvl, str_lvl, def_lvl, xp, hp_xp) -> None:
         self.name: str = name
         self.hp: int = hp
         self.atk_lvl: int = atk_lvl
@@ -13,6 +13,7 @@ class Monster:
         self.def_lvl: int = def_lvl
         self.bag: list = []
         self.xp: int = xp
+        self.hp_xp: int = hp_xp
 
     def __str__(self) -> str:
         return f'{self.name} spawned.\n'
@@ -25,7 +26,7 @@ class Monster:
             )
         return int(round(dmg))
 
-goblin = Monster('Goblin', 5, 1, 1, 0, 5)
+goblin = Monster('Goblin', 5, 1, 1, 0, 12, 5)
 goblin.bag = [
     {'item name': 'Gold Coins', 'quantity': 10},
     {'item name': 'Bronze Sword', 'quantity': 1},
@@ -33,7 +34,7 @@ goblin.bag = [
     {'item name': 'Bronze Arrows', 'quantity': 100}
 ]
 
-spider = Monster('Spider', 5, 1, 1, 0, 5)
+spider = Monster('Spider', 5, 1, 1, 0, 8, 5)
 spider.bag = [
     {'item name': 'Gold Coins', 'quantity': 10},
     {'item name': 'Bronze Sword', 'quantity': 1},
@@ -41,7 +42,7 @@ spider.bag = [
     {'item name': 'Bronze Arrows', 'quantity': 100}
 ]
 
-baby_dragon = Monster('Baby Dragon', 50, 1, 99, 1, 1000)
+baby_dragon = Monster('Baby Dragon', 50, 1, 99, 1, 1000, 100)
 baby_dragon.bag = [
     {'item name': 'Gold Coins', 'quantity': 10000},
     {'item name': 'Rune Sword', 'quantity': 1},
