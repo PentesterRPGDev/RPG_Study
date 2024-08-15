@@ -23,7 +23,7 @@ class Combat:
             if not cbt.is_alive(mob):
                 util.slow_txt(
                     f'{mob.name} is dead.\n'
-                    f'{char.name} has earned {mob.xp}xp in {char.active_melee_skill}.'
+                    f'{char.name} has earned {mob.xp}xp.'
                     )
                 util.xp_up(char, mob.xp)
                 print(f'{char.hp_xp}')
