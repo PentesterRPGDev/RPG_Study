@@ -5,9 +5,14 @@ from player import user
 class Combat:
     ''' Responsible class for combat. '''
     @staticmethod
-    def is_alive(character) -> bool:
-        ''' Check if character is alive. '''
-        return character.hp > 0
+    def c_is_alive(char) -> bool:
+        ''' Check if main character is alive. '''
+        return char.health > 0
+
+    @staticmethod
+    def m_is_alive(mob) -> bool:
+        ''' Check if monster is alive. '''
+        return mob.skills.health > 0
 
     @staticmethod
     def melee(char, mob) -> None:
@@ -15,28 +20,33 @@ class Combat:
         util.slow_txt(
             f'{char.name} is fighting {mob.name}.\n'
             )
-        while cbt.is_alive(char):
+        while cbt.c_is_alive(char):
             util.slow_txt(
-                f'{mob.name} has {mob.hp} hp. '
-                f'{char.name} has {char.hp} hp.\n'
+                f'{mob.name} has {mob.skills.health} hp. '
+                f'{char.name} has {char.health} hp.\n'
                 )
-            mob.hp -= char.melee_dmg()
-            if not cbt.is_alive(mob):
+            mob.skills.health -= char.melee_dmg()
+            if not cbt.m_is_alive(mob):
                 util.slow_txt(
                     f'{mob.name} is dead.\n\n'
-                    f'{char.name} has earned {mob.xp} atk xp '
-                    f'and {mob.hp_xp} hp xp.\n'
+                    f'{char.name} has earned {int(mob.xp.combat_xp)} atk xp '
+                    f'and {int(mob.xp.health_xp)} hp xp.\n'
                     )
-                util.xp_up(user, 'atk', mob.xp)
-                util.xp_up(user, 'hp', mob.hp_xp)
+                util.xp_up(user, 'atk', mob.xp.combat_xp)
+                util.xp_up(user, 'hp', mob.xp.health_xp)
                 util.drop(mob, char)
                 break
-            if not cbt.is_alive(char):
+            char.health -= mob.melee_dmg()
+            if not cbt.c_is_alive(char):
                 util.slow_txt(
-                    f'You died fighting against {mob.name}.'
+                    f'You died fighting against {mob.name}.\n'
                     )
                 break
-            char.hp -= mob.melee_dmg()
+        else:
+            util.slow_txt(
+                f'{char.name} has no health. You can\'t fight.\n'
+                )
+
 
 cbt = Combat()
 

@@ -11,8 +11,8 @@ class Player(CombatSkills, GatheringSkills):
         super().__init__()
         GatheringSkills.__init__(self)
         self.name = name
-        self.combat_skills: CombatSkills = CombatSkills()
-        self.gathering_skills: GatheringSkills = GatheringSkills()
+        self.combat_skills = CombatSkills()
+        self.gathering_skills = GatheringSkills()
         self.bag: list = [
             {'item name': 'Gold Coins', 'quantity': 0},
             {'item name': 'Bronze Sword', 'quantity': 1}
@@ -51,7 +51,7 @@ class Player(CombatSkills, GatheringSkills):
 
     def melee_dmg(self) -> int:
         ''' Calculates the melee damage made by the user.'''
-        dmg = 0.5 + (self.str_lvl * randint(0, 65) / 640)
+        dmg = 0.5 + (self.strength * randint(0, 65) / 640)
         util.slow_txt(
             f'{self.name} hits {int(round(dmg))}.\n'
             )
