@@ -1,6 +1,5 @@
 ''' Responsible for combat mechanics of runescape. '''
 from utils import util
-from player import user
 
 class Combat:
     ''' Responsible class for combat. '''
@@ -32,9 +31,10 @@ class Combat:
                     f'{char.name} has earned {int(mob.xp.combat_xp)} atk xp '
                     f'and {int(mob.xp.health_xp)} hp xp.\n'
                     )
-                user.xp_up(mob.xp.health_xp)
-                util.xp_up(user.combat_skills.health_xp, mob.xp.health_xp)
-                user.xp_up1(mob.xp.health_xp)
+                util.xp_up(char, 'hp', mob)
+                util.xp_up(char, 'atk', mob)
+                util.xp_up(char, 'str', mob)
+                util.xp_up(char, 'def', mob)
                 util.drop(mob, char)
                 break
             char.health -= mob.melee_dmg()

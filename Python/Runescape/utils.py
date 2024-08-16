@@ -62,11 +62,31 @@ class Utils:
         char.hp_lvl += xp
 
     @staticmethod
-    def xp_up(char, xp: int) -> None:
-        ''' Gain xp on specific skill. '''
-        char += xp
-        print(f'Test a: {char}.')
-        print(f'Test a: {xp}.')
+    def xp_up(char, skill: str, mob) -> None:
+        '''
+        Upgrade character xp using a list of tuples. 
+
+        List of xp in skills (3 elements given): 
+        1st: skill = name 
+        2nd: character xp = c_xp
+        3rd: monster given xp = m_xp
+
+        '''
+        xp_list = [
+            ('hp', 'health_xp', 'health_xp'),
+            ('atk', 'attack_xp', 'combat_xp'),
+            ('str', 'strength_xp', 'combat_xp'),
+            ('def', 'defense_xp', 'combat_xp'),
+        ]
+
+        for name, c_xp, m_xp in xp_list:
+            if skill == name:
+                # Update the total xp before setting it as an attribute.
+                update = getattr(char.combat_skills, c_xp) + getattr(mob.xp, m_xp)
+                setattr(char.combat_skills, c_xp, update)
+                break
+        else:
+            print(f"Unknown skill: {skill}")
 
 util = Utils()
 
