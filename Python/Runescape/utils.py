@@ -12,6 +12,29 @@ class Utils:
     Game utils. 
     
     '''
+    req_xp = [
+        ('2', '83'),
+        ('3', '174'),
+        ('4', '276'),
+        ('5', '388'),
+        ('6', '512'),
+        ('7', '650'),
+        ('8', '801'),
+        ('9', '969'),
+        ('10', '1154'),
+        ('11', '1358'),
+        ('12', '1584'),
+        ('13', '1833'),
+        ('14', '2107'),
+        ('15', '2411'),
+    ]
+
+    xp_list = [
+        ('hp', 'health_xp', 'health_xp'),
+        ('atk', 'attack_xp', 'combat_xp'),
+        ('str', 'strength_xp', 'combat_xp'),
+        ('def', 'defense_xp', 'combat_xp'),
+    ]
 
     @staticmethod
     def slow_txt(text) -> None:
@@ -57,11 +80,6 @@ class Utils:
                     break
 
     @staticmethod
-    def lvl_up(char, xp: int) -> None:
-        ''' Gain lvl on a specific skill. '''
-        char.hp_lvl += xp
-
-    @staticmethod
     def xp_up(char, skill: str, mob) -> None:
         '''
         Upgrade character xp using a list of tuples. 
@@ -72,14 +90,8 @@ class Utils:
         3rd: monster given xp = m_xp
 
         '''
-        xp_list = [
-            ('hp', 'health_xp', 'health_xp'),
-            ('atk', 'attack_xp', 'combat_xp'),
-            ('str', 'strength_xp', 'combat_xp'),
-            ('def', 'defense_xp', 'combat_xp'),
-        ]
 
-        for name, c_xp, m_xp in xp_list:
+        for name, c_xp, m_xp in Utils.xp_list:
             if skill == name:
                 # Update the total xp before setting it as an attribute.
                 update = getattr(char.combat_skills, c_xp) + getattr(mob.xp, m_xp)
@@ -87,6 +99,34 @@ class Utils:
                 break
         else:
             print(f"Unknown skill: {skill}")
+
+    @staticmethod
+    def cbt_lvl_up(char):
+        '''
+
+        Update combat levels based on xp.
+
+        '''
+        for skill in ['attack', 'strength', 'defense', 'health']:
+            current_xp = getattr(char.combat_skills, f'{skill}_xp')
+            for lvl, t_xp in Utils.req_xp:
+                if current_xp >= int(t_xp):
+                    setattr(char.combat_skills, f'{skill}', lvl)
+                    print(f"Character leveled up to level {lvl} in {skill}")
+
+    @staticmethod
+    def non_cbt_lvl_up(char):
+        '''
+        
+        Update combat levels based on xp.
+
+        '''
+        for skill in ['woodcutting', 'fishing', 'mining']:
+            current_xp = getattr(char.gathering_skills, f'{skill}_xp')
+            for lvl, t_xp in Utils.req_xp:
+                if current_xp >= int(t_xp):
+                    setattr(char.gathering_skills, f'{skill}', lvl)
+                    print(f"Character leveled up to level {lvl} in {skill}")
 
 util = Utils()
 

@@ -9,6 +9,8 @@ if __name__ == '__main__':
         f'{user}\n{goblin}\n{spider}\n{baby_dragon}\n'
     )
     cbt.melee(user, goblin)
+    util.cbt_lvl_up(user)
+    util.non_cbt_lvl_up(user)
     util.slow_txt(
         f'{user.combat_skills}\n{user.gathering_skills}'
     )
