@@ -32,8 +32,9 @@ class Combat:
                     f'{char.name} has earned {int(mob.xp.combat_xp)} atk xp '
                     f'and {int(mob.xp.health_xp)} hp xp.\n'
                     )
-                util.xp_up(user, 'atk', mob.xp.combat_xp)
-                util.xp_up(user, 'hp', mob.xp.health_xp)
+                user.xp_up(mob.xp.health_xp)
+                util.xp_up(user.combat_skills.health_xp, mob.xp.health_xp)
+                user.xp_up1(mob.xp.health_xp)
                 util.drop(mob, char)
                 break
             char.health -= mob.melee_dmg()

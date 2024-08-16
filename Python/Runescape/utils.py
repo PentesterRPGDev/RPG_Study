@@ -62,12 +62,11 @@ class Utils:
         char.hp_lvl += xp
 
     @staticmethod
-    def xp_up(char, skill, xp: int) -> None:
+    def xp_up(char, xp: int) -> None:
         ''' Gain xp on specific skill. '''
-        if skill in ('hp'):
-            char.hp_xp += xp
-        if skill in ('atk'):
-            char.atk_xp += xp
+        char += xp
+        print(f'Test a: {char}.')
+        print(f'Test a: {xp}.')
 
 util = Utils()
 

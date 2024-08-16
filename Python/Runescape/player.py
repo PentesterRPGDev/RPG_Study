@@ -57,6 +57,12 @@ class Player(CombatSkills, GatheringSkills):
             )
         return int(round(dmg))
 
+    def xp_up(self, mob_xp: int) -> None:
+        ''' Test to fix xp upgrade. '''
+        print(f'Test b: {self.combat_skills.health_xp}.')
+        self.combat_skills.health_xp += mob_xp
+        print(f'Test c: {self.combat_skills.health_xp}\nTest m: {mob_xp}.')
+
 system('clear')
 user = Player()
 system('clear')
