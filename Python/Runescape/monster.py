@@ -38,24 +38,28 @@ class Monster:
             )
         return int(round(dmg))
 
-class MakeMonsters:
-    ''' Loads csv monsters into the game as objects. '''
+class LoadMonster:
+    '''
+    Loads csv monsters into the game as objects.
+    '''
     def create(self, row):
-        ''' Receive row as argument to create monster. '''
+        '''
+        Receive each row from monsters database as argument to create monster.
+        '''
         return (
             Monster(row[0],
             MonsterSkills(*map(int, row[1:5])),
             MonsterEXP(int(row[5]), float(row[6]))
             ))
 
-create_monster = MakeMonsters()
+load_monster = LoadMonster()
 with open('csv/monsters_db.csv', 'r', encoding='utf-8') as file:
-    monsters_data = list(csv.reader(file))
-    monsters_data.pop(0)
+    monster_db = list(csv.reader(file))
+    monster_db.pop(0)
 
 monsters = []
-for monster_row in monsters_data:
-    monsters.append(create_monster.create(monster_row))
+for monster_row in monster_db:
+    monsters.append(load_monster.create(monster_row))
 
 goblin = monsters[0]
 spider = monsters[1]
