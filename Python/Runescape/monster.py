@@ -1,5 +1,5 @@
 ''' Responsible script for creating monsters. '''
-import csv
+import pandas as pd
 from random import randint
 from monster_skills import MonsterSkills
 from monster_exp import MonsterEXP
@@ -53,17 +53,15 @@ class LoadMonster:
             ))
 
 load_monster = LoadMonster()
-with open('csv/monsters_db.csv', 'r', encoding='utf-8') as file:
-    monster_db = list(csv.reader(file))
-    monster_db.pop(0)
+monster_db = pd.read_csv('Python/Runescape/csv/monsters_db.csv')
 
 monsters = []
-for monster_row in monster_db:
-    monsters.append(load_monster.create(monster_row))
+for index, monster_row in monster_db.iterrows():
+    monsters.append(load_monster.create(monster_row.tolist()))
 
 goblin = monsters[0]
 spider = monsters[1]
-print(goblin.bag)
+print(monsters)
 goblin.add_item(('gold coins', 10, 'shiny but useful.', True))
 print(goblin.bag)
 
