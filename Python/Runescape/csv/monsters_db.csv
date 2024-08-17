@@ -1,0 +1,5 @@
+name, hp, atk, str, def, hp_xp, combat_xp, bag_item: name, bag_item: quantity
+goblin, 5, 1, 1, 1, 5, 12.5, gold coins, 10
+spider, 5, 1, 1, 1, 5, 12, gold coins, 5
+bandit, 8, 1, 2, 1, 8, 20, gold coins, 100
+dragon, 50, 10, 10, 10, 50, 520, gold coins, 10000 

@@ -16,17 +16,17 @@ class Combat:
     @staticmethod
     def melee(char, mob) -> None:
         ''' Responsible for melee fights. '''
-        util.slow_txt(
+        util.print_slow_txt(
             f'{char.name} is fighting {mob.name}.\n'
             )
         while cbt.c_is_alive(char):
-            util.slow_txt(
+            util.print_slow_txt(
                 f'{mob.name} has {mob.skills.health} hp. '
                 f'{char.name} has {char.health} hp.\n'
                 )
             mob.skills.health -= char.melee_dmg()
             if not cbt.m_is_alive(mob):
-                util.slow_txt(
+                util.print_slow_txt(
                     f'{mob.name} is dead.\n\n'
                     f'{char.name} has earned {int(mob.xp.combat_xp)} atk xp '
                     f'and {int(mob.xp.health_xp)} hp xp.\n'
@@ -39,12 +39,12 @@ class Combat:
                 break
             char.health -= mob.melee_dmg()
             if not cbt.c_is_alive(char):
-                util.slow_txt(
+                util.print_slow_txt(
                     f'You died fighting against {mob.name}.\n'
                     )
                 break
         else:
-            util.slow_txt(
+            util.print_slow_txt(
                 f'{char.name} has no health. You can\'t fight.\n'
                 )
 

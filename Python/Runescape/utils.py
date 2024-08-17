@@ -5,30 +5,19 @@ Import time to slowdown printed text.
 
 '''
 import time
+import csv
 
 class Utils:
     '''
 
-    Game utils. 
-    
-    '''
-    req_xp = [
-        ('2', '83'),
-        ('3', '174'),
-        ('4', '276'),
-        ('5', '388'),
-        ('6', '512'),
-        ('7', '650'),
-        ('8', '801'),
-        ('9', '969'),
-        ('10', '1154'),
-        ('11', '1358'),
-        ('12', '1584'),
-        ('13', '1833'),
-        ('14', '2107'),
-        ('15', '2411'),
-    ]
+    Game utils.
 
+    List of xp in skills (3 elements given): 
+    1st: skill = name 
+    2nd: character xp = c_xp
+    3rd: monster given xp = m_xp
+
+    '''
     xp_list = [
         ('hp', 'health_xp', 'health_xp'),
         ('atk', 'attack_xp', 'combat_xp'),
@@ -37,7 +26,7 @@ class Utils:
     ]
 
     @staticmethod
-    def slow_txt(text) -> None:
+    def print_slow_txt(text) -> None:
         '''
 
         Print the text slower for a better game experience. 
@@ -58,7 +47,7 @@ class Utils:
         bag_items: str = ''
         for item in character.bag:
             bag_items += f'{item["quantity"]}x {item["item name"]}\n'
-        util.slow_txt(
+        util.print_slow_txt(
             f'\n{character.name} bag:\n{bag_items}'
             )
         return bag_items
@@ -84,11 +73,6 @@ class Utils:
         '''
         Upgrade character xp using a list of tuples. 
 
-        List of xp in skills (3 elements given): 
-        1st: skill = name 
-        2nd: character xp = c_xp
-        3rd: monster given xp = m_xp
-
         '''
 
         for name, c_xp, m_xp in Utils.xp_list:
@@ -107,12 +91,15 @@ class Utils:
         Update combat levels based on xp.
 
         '''
+        with open('csv/xp_requirement.csv', 'r', encoding='utf-8') as file:
+            read = list(csv.reader(file))
+            read.pop(0)
         for skill in ['attack', 'strength', 'defense', 'health']:
             current_xp = getattr(char.combat_skills, f'{skill}_xp')
-            for lvl, t_xp in Utils.req_xp:
-                if current_xp >= int(t_xp):
-                    setattr(char.combat_skills, f'{skill}', lvl)
-                    print(f"Character leveled up to level {lvl} in {skill}")
+            for row in read:
+                if current_xp >= int(row[1]):
+                    setattr(char.combat_skills, f'{skill}', int(row[0]))
+                    print(f"Character leveled up to level {row[0]} in {skill}")
 
     @staticmethod
     def non_cbt_lvl_up(char):
@@ -121,12 +108,15 @@ class Utils:
         Update combat levels based on xp.
 
         '''
-        for skill in ['woodcutting', 'fishing', 'mining']:
-            current_xp = getattr(char.gathering_skills, f'{skill}_xp')
-            for lvl, t_xp in Utils.req_xp:
-                if current_xp >= int(t_xp):
-                    setattr(char.gathering_skills, f'{skill}', lvl)
-                    print(f"Character leveled up to level {lvl} in {skill}")
+        with open('csv/xp_requirement.csv', 'r', encoding='utf-8') as file:
+            read = list(csv.reader(file))
+            read.pop(0)
+            for skill in ['woodcutting', 'fishing', 'mining']:
+                current_xp = getattr(char.gathering_skills, f'{skill}_xp')
+                for row in read:
+                    if current_xp >= int(row[1]):
+                        setattr(char.gathering_skills, f'{skill}', int(row[0]))
+                        print(f"Character leveled up to level {row[0]} in {skill}")
 
 util = Utils()
 
