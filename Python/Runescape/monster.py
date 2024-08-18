@@ -60,7 +60,6 @@ for index, monster_row in monster_db.iterrows():
     monsters.append(load_monster.create(monster_row.tolist()))
 
 goblin = monsters[0]
-spider = monsters[1]
 print(monsters)
 goblin.add_item(('gold coins', 10, 'shiny but useful.', True))
 print(goblin.bag)
