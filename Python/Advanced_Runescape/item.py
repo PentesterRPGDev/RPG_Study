@@ -14,10 +14,12 @@ class Item:
         )
 
 coins = Item(
-    ItemInfo('gold coins', 'shiny currency', 1, True, False)
+    ItemInfo('Gold coins', 'Shiny currency', 0, True, False)
     )
-bag = []
-bag.append(coins)
-bag.append(coins)
-print(coins)
-print(f'{coins!r}')
+
+bronze_sword = Item(
+    ItemInfo('Bronze sword', 'A sharp sword.', 1, False, False)
+)
+
+if __name__ == '__main__':
+    pass
