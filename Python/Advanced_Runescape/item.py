@@ -17,7 +17,7 @@ coins = Item(
     ItemInfo('Gold coins', 'Shiny currency', 0, True, False)
     )
 
-bronze_sword = Item(
+bronze_scimitar = Item(
     ItemInfo('Bronze sword', 'A sharp sword.', 1, False, False)
 )
 
