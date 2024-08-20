@@ -49,7 +49,6 @@ spider = Monster(
 
 print(goblin.bag)
 print(spider.bag)
-goblin.bag.append(coins)
 
 def bag_append(mob, item, item_quantity):
     '''
@@ -59,18 +58,36 @@ def bag_append(mob, item, item_quantity):
 
     '''
     item_name = getattr(item.info, 'name')
+    stackable = getattr(item.info, 'stackable')
+    new_item = deepcopy(item)
+    if bag_item(mob) == item_name:
+        if stackable:
+            print('This was used.')
+            edit_item(new_item, item_quantity)
+        if not stackable:
+            add_multi_items(mob, new_item, item_quantity)
+    if bag_item(mob) != item_name:
+        if stackable:
+            add_item(mob, new_item, item_quantity)
+        if not stackable:
+            add_multi_items(mob, new_item, item_quantity)
+
+def edit_item(mob, new_item, item_quantity):
+    '''
+    Sum existant item quantity + new item quantity.
+    '''
+    for _ in mob:
+        quantity = getattr(_.info, 'quantity')
+        setattr(new_item.info, 'quantity', item_quantity + quantity)
+
+def add_multi_items(mob, new_item, item_quantity):
+    '''
+    Add (item x quantity) to bag.
+    '''
     for _ in range(item_quantity):
-        if bag_item(mob) == item_name:
-            print("Item found inside bag.")
-            check_item(mob, item, item_quantity)
-            break
-        if bag_item(mob) != item_name:
-            print('Item was not found in bag.')
-            check_item(mob, item, item_quantity)
-            break
+        mob.bag.append(new_item)
 
-
-def check_item(mob, item, item_quantity):
+def add_item(mob, new_item, item_quantity):
     '''
     
     Checks if item is stackable or not.
@@ -78,35 +95,8 @@ def check_item(mob, item, item_quantity):
     If false, add item multiple times.
     
     '''
-    new_item = deepcopy(item)
-    stackable = getattr(item.info, 'stackable')
-    if stackable:
-        mob.bag.append(new_item)
-        setattr(new_item.info, 'quantity', item_quantity)
-    if not stackable:
-        for _ in range(item_quantity):
-            mob.bag.append(new_item)
-
-
-class Test:
-    def add_item(self, mob, item, item_quantity) -> None:
-        item_name = getattr(item.info, 'name')
-        stackable = getattr(item.info, 'quantity')
-        new_item = deepcooy(item)
-
-
-def handle_existant_item(mob, item):
-    if bag_item(mob) == item_name(item):
-        
-
-def handle_new_item(mob, item):
-    if bag_item(mob) != item_name(item):
-        if stackable:
-            mob.bag.append(new_item)
-            change_quantity(new_item)
-        if not stackable:
-            for _ in range(item_quantity):
-                mob.bag.append
+    mob.bag.append(new_item)
+    setattr(new_item.info, 'quantity', item_quantity)
 
 def bag_item(mob) -> str:
     '''
@@ -120,12 +110,11 @@ def bag_item(mob) -> str:
     Return: 'No items found in bag.': str.
 
     '''
-    for bag_item in mob.bag:
-        return bag_item.info.name
+    for item in mob.bag:
+        return item.info.name
     return 'No items found in bag.'
 
 bag_append(goblin, bronze_sword, 2)
 bag_append(goblin, coins, 100)
 bag_append(goblin, coins, 100)
 print(f'{goblin.info.name} bag:\n{goblin.bag}')
-print(bag_item(goblin))
