@@ -49,6 +49,7 @@ spider = Monster(
 
 print(goblin.bag)
 print(spider.bag)
+goblin.bag.append(coins)
 
 def bag_append(mob, item, item_quantity):
     '''
@@ -58,15 +59,16 @@ def bag_append(mob, item, item_quantity):
 
     '''
     item_name = getattr(item.info, 'name')
-    for i in mob.bag:
-        if i.info.name == item_name:
+    for _ in range(item_quantity):
+        if bag_item(mob) == item_name:
+            print("Item found inside bag.")
             check_item(mob, item, item_quantity)
             break
-        if i.info.name != item_name:
+        if bag_item(mob) != item_name:
+            print('Item was not found in bag.')
             check_item(mob, item, item_quantity)
             break
-    else:
-        check_item(mob, item, item_quantity)
+
 
 def check_item(mob, item, item_quantity):
     '''
@@ -80,11 +82,50 @@ def check_item(mob, item, item_quantity):
     stackable = getattr(item.info, 'stackable')
     if stackable:
         mob.bag.append(new_item)
-        setattr(new_item.info, 'quantitt', item_quantity)
+        setattr(new_item.info, 'quantity', item_quantity)
     if not stackable:
         for _ in range(item_quantity):
             mob.bag.append(new_item)
 
+
+class Test:
+    def add_item(self, mob, item, item_quantity) -> None:
+        item_name = getattr(item.info, 'name')
+        stackable = getattr(item.info, 'quantity')
+        new_item = deepcooy(item)
+
+
+def handle_existant_item(mob, item):
+    if bag_item(mob) == item_name(item):
+        
+
+def handle_new_item(mob, item):
+    if bag_item(mob) != item_name(item):
+        if stackable:
+            mob.bag.append(new_item)
+            change_quantity(new_item)
+        if not stackable:
+            for _ in range(item_quantity):
+                mob.bag.append
+
+def bag_item(mob) -> str:
+    '''
+
+    Bag_item:
+    Inside monster bag: list.
+    Check name of item: class Item.info.name.
+    If bag has items:
+        Return item name: str.
+    If bag has no items:
+    Return: 'No items found in bag.': str.
+
+    '''
+    for bag_item in mob.bag:
+        return bag_item.info.name
+    return 'No items found in bag.'
+
 bag_append(goblin, bronze_sword, 2)
 bag_append(goblin, coins, 100)
+bag_append(goblin, coins, 100)
 print(f'{goblin.info.name} bag:\n{goblin.bag}')
+print(bag_item(goblin))
