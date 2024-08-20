@@ -1,9 +1,8 @@
-
 from copy import deepcopy
 from monster_info import MonsterInfo
 from monster_skills import MonsterSkills
 from monster_exp import MonsterExp
-from item import coins, bronze_sword
+from item import Item, coins, bronze_scimitar
 
 class Monster:
     def __init__(self, info: MonsterInfo, skills: MonsterSkills, xp: MonsterExp) -> None:
@@ -47,74 +46,56 @@ spider = Monster(
     )
 )
 
-print(goblin.bag)
-print(spider.bag)
-
-def bag_append(mob, item, item_quantity):
+def bag_append(mob: Monster, item: Item, quantity: int) -> None:
     '''
+    Create a copy of class Item.
+    Avoid attributing same object to different monsters.
 
-    Add item object to the bag and specify the quantity.
-    Uses check_item to check if item is stackable or not.
+    Received Arguments:
+    mob: Monster = Monster.
+    item: Item = Item.
+    quantity: str = Quantity.
 
+    Used Arguments:
+    item_name: str = Get the name of the item.
+    stackable: bool = Get if item is stackable.
+    new_item: Item = Create a copy of the item.
     '''
     item_name = getattr(item.info, 'name')
     stackable = getattr(item.info, 'stackable')
     new_item = deepcopy(item)
-    if bag_item(mob) == item_name:
-        if stackable:
-            print('This was used.')
-            edit_item(new_item, item_quantity)
-        if not stackable:
-            add_multi_items(mob, new_item, item_quantity)
-    if bag_item(mob) != item_name:
-        if stackable:
-            add_item(mob, new_item, item_quantity)
-        if not stackable:
-            add_multi_items(mob, new_item, item_quantity)
+    for bag_item in mob.bag:
+        if bag_item.info.name == item_name:
+            handle_existent_item(stackable, bag_item, new_item, quantity, mob)
+            break
+    else:
+        handle_new_item(stackable, new_item, quantity, mob)
 
-def edit_item(mob, new_item, item_quantity):
+def handle_existent_item(stackable, bag_item, new_item, quantity, mob):
     '''
-    Sum existant item quantity + new item quantity.
+    If there are items in bag with the same name.
+    If item is stackable, update quantity of item's copy.
+    If item is not stackable, create multiple copies of the item.
     '''
-    for _ in mob:
-        quantity = getattr(_.info, 'quantity')
-        setattr(new_item.info, 'quantity', item_quantity + quantity)
+    if stackable:
+        setattr(bag_item.info, 'quantity', quantity + getattr(bag_item.info, 'quantity'))
+    if not stackable:
+        for _ in range(quantity):
+            mob.bag.append(new_item)
 
-def add_multi_items(mob, new_item, item_quantity):
+def handle_new_item(stackable, new_item, quantity, mob):
     '''
-    Add (item x quantity) to bag.
+    If there are no items in bag.
+    If new item is stackable, copy item and update quantity.
+    If new item is not stackable, create multiple copies of the item.
     '''
-    for _ in range(item_quantity):
+    if stackable:
         mob.bag.append(new_item)
+        setattr(new_item.info, 'quantity', quantity)
+    if not stackable:
+        for _ in range(quantity):
+            mob.bag.append(new_item)
 
-def add_item(mob, new_item, item_quantity):
-    '''
-    
-    Checks if item is stackable or not.
-    If true, add item and increment item quantity.
-    If false, add item multiple times.
-    
-    '''
-    mob.bag.append(new_item)
-    setattr(new_item.info, 'quantity', item_quantity)
-
-def bag_item(mob) -> str:
-    '''
-
-    Bag_item:
-    Inside monster bag: list.
-    Check name of item: class Item.info.name.
-    If bag has items:
-        Return item name: str.
-    If bag has no items:
-    Return: 'No items found in bag.': str.
-
-    '''
-    for item in mob.bag:
-        return item.info.name
-    return 'No items found in bag.'
-
-bag_append(goblin, bronze_sword, 2)
-bag_append(goblin, coins, 100)
+bag_append(goblin, bronze_scimitar, 2)
 bag_append(goblin, coins, 100)
 print(f'{goblin.info.name} bag:\n{goblin.bag}')
