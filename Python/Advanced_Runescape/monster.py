@@ -64,31 +64,37 @@ def bag_append(mob: Monster, item: Item, quantity: int) -> None:
     new_item = deepcopy(item)
     for bag_item in mob.bag:
         if bag_item.name == item.name:
-            if bag_item.stackable:
-                bag_item.quantity += quantity
-            if not bag_item.stackable:
-                for _ in range(quantity):
-                    mob.bag.append(new_item)
-                break
-    if not bag_item in mob.bag:
-        print('Doing fine.')
+            handle_bag_item(mob, bag_item, quantity, new_item)
+            break
+    else:
+        handle_new_item(mob, item, quantity, new_item)
 
-def handle_existent_item():
+def handle_bag_item(mob, bag_item, quantity, new_item):
     '''
     If there are items in bag with the same name.
     If item is stackable, update quantity of item's copy.
     If item is not stackable, create multiple copies of the item.
     '''
-    pass
+    if bag_item.stackable:
+        bag_item.quantity += quantity
+    if not bag_item.stackable:
+        for _ in range(quantity):
+            mob.bag.append(new_item)
 
-def handle_new_item():
+def handle_new_item(mob, item, quantity, new_item):
     '''
     If there are no items in bag.
     If new item is stackable, copy item and update quantity.
     If new item is not stackable, create multiple copies of the item.
     '''
-    pass
+    if item.stackable:
+        mob.bag.append(new_item)
+        new_item.quantity += quantity
+    if not item.stackable:
+        for _ in range(quantity):
+            mob.bag.append(new_item)
 
 bag_append(goblin, bronze_scimitar, 2)
 bag_append(goblin, coins, 100)
+bag_append(goblin, coins, 200)
 print(f'{goblin.info.name} bag:\n{goblin.bag}')
