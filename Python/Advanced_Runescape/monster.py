@@ -46,55 +46,48 @@ spider = Monster(
     )
 )
 
+#goblin.bag.append(coins)
+
 def bag_append(mob: Monster, item: Item, quantity: int) -> None:
     '''
     Create a copy of class Item.
-    Avoid attributing same object to different monsters.
+    Avoid having same object in different monsters.
 
     Received Arguments:
     mob: Monster = Monster.
     item: Item = Item.
-    quantity: str = Quantity.
+    quantity: int = Quantity.
 
     Used Arguments:
-    item_name: str = Get the name of the item.
-    stackable: bool = Get if item is stackable.
     new_item: Item = Create a copy of the item.
     '''
-    item_name = getattr(item.info, 'name')
-    stackable = getattr(item.info, 'stackable')
     new_item = deepcopy(item)
     for bag_item in mob.bag:
-        if bag_item.info.name == item_name:
-            handle_existent_item(stackable, bag_item, new_item, quantity, mob)
-            break
-    else:
-        handle_new_item(stackable, new_item, quantity, mob)
+        if bag_item.name == item.name:
+            if bag_item.stackable:
+                bag_item.quantity += quantity
+            if not bag_item.stackable:
+                for _ in range(quantity):
+                    mob.bag.append(new_item)
+                break
+    if not bag_item in mob.bag:
+        print('Doing fine.')
 
-def handle_existent_item(stackable, bag_item, new_item, quantity, mob):
+def handle_existent_item():
     '''
     If there are items in bag with the same name.
     If item is stackable, update quantity of item's copy.
     If item is not stackable, create multiple copies of the item.
     '''
-    if stackable:
-        setattr(bag_item.info, 'quantity', quantity + getattr(bag_item.info, 'quantity'))
-    if not stackable:
-        for _ in range(quantity):
-            mob.bag.append(new_item)
+    pass
 
-def handle_new_item(stackable, new_item, quantity, mob):
+def handle_new_item():
     '''
     If there are no items in bag.
     If new item is stackable, copy item and update quantity.
     If new item is not stackable, create multiple copies of the item.
     '''
-    if stackable:
-        mob.bag.append(new_item)
-        setattr(new_item.info, 'quantity', quantity)
-    if not stackable:
-        for _ in range(quantity):
-            mob.bag.append(new_item)
+    pass
 
 bag_append(goblin, bronze_scimitar, 2)
 bag_append(goblin, coins, 100)
