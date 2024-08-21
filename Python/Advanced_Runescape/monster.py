@@ -5,7 +5,7 @@ from monster_info import MonsterInfo
 from monster_skills import MonsterSkills
 from monster_exp import MonsterExp
 
-class Monster:
+class Monster():
     '''
     Create Monster object.
     
@@ -39,7 +39,7 @@ class Monster:
         return self.skills.health
 
     @health.setter
-    def health(self, value):
+    def health(self, value: int):
         '''
         Allow health to update it's value.
         '''
