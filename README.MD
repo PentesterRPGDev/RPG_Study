@@ -97,7 +97,8 @@ Make various projects to build my portfolio.
 ### Working with
 
 - 🔲 Python
-- 🔲 Django
+ - 🔲 Django
+ - 🔲 Pandas
 - 🔲 PostgreSQL
 - 🔲 Html
 - 🔲 Css
