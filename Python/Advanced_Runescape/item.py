@@ -1,7 +1,15 @@
-
+'''
+Responsible for Item class.
+'''
 from item_info import ItemInfo
 
 class Item:
+    '''
+    Create Item object.
+    
+    Item object:
+    ItemInfo = name, examine, quantity, stackable, membership.
+    '''
     def __init__(self, info: ItemInfo) -> None:
         self.info = info
 
@@ -49,4 +57,4 @@ bronze_scimitar = Item(
 )
 
 if __name__ == '__main__':
-    pass
+    print('Please run rs3.py instead.')
