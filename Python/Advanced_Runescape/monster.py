@@ -1,10 +1,19 @@
-from copy import deepcopy
+'''
+Responsible for Monster class.
+'''
 from monster_info import MonsterInfo
 from monster_skills import MonsterSkills
 from monster_exp import MonsterExp
-from item import Item, coins, bronze_scimitar
 
 class Monster:
+    '''
+    Create Monster object.
+    
+    Monster object:
+    MonsterInfo = name, examine, membership.
+    MonsterSkills = health, attack, strength, defense.
+    MonsterExp = health_xp, combat_xp
+    '''
     def __init__(self, info: MonsterInfo, skills: MonsterSkills, xp: MonsterExp) -> None:
         self.info = info
         self.skills = skills
@@ -21,6 +30,34 @@ class Monster:
             f'MonsterSkills: {self.skills.__dict__},\n'
             f'MonsterExp: {self.xp.__dict__}\n)'
         )
+
+    @property
+    def health(self):
+        '''
+        Allow self.health instead of self.skills.health.
+        '''
+        return self.skills.health
+
+    @health.setter
+    def health(self, value):
+        '''
+        Allow health to update it's value.
+        '''
+        self.skills.health = value
+
+    @property
+    def strength(self):
+        '''
+        Allow self.strength instead of self.skills.strength,
+        '''
+        return self.skills.strength
+
+    @property
+    def name(self):
+        '''
+        Allow self.name instead of self.info.name
+        '''
+        return self.info.name
 
 goblin = Monster(
     MonsterInfo(
@@ -46,55 +83,5 @@ spider = Monster(
     )
 )
 
-#goblin.bag.append(coins)
-
-def bag_append(mob: Monster, item: Item, quantity: int) -> None:
-    '''
-    Create a copy of class Item.
-    Avoid having same object in different monsters.
-
-    Received Arguments:
-    mob: Monster = Monster.
-    item: Item = Item.
-    quantity: int = Quantity.
-
-    Used Arguments:
-    new_item: Item = Create a copy of the item.
-    '''
-    new_item = deepcopy(item)
-    for bag_item in mob.bag:
-        if bag_item.name == item.name:
-            handle_bag_item(mob, bag_item, quantity, new_item)
-            break
-    else:
-        handle_new_item(mob, item, quantity, new_item)
-
-def handle_bag_item(mob, bag_item, quantity, new_item):
-    '''
-    If there are items in bag with the same name.
-    If item is stackable, update quantity of item's copy.
-    If item is not stackable, create multiple copies of the item.
-    '''
-    if bag_item.stackable:
-        bag_item.quantity += quantity
-    if not bag_item.stackable:
-        for _ in range(quantity):
-            mob.bag.append(new_item)
-
-def handle_new_item(mob, item, quantity, new_item):
-    '''
-    If there are no items in bag.
-    If new item is stackable, copy item and update quantity.
-    If new item is not stackable, create multiple copies of the item.
-    '''
-    if item.stackable:
-        mob.bag.append(new_item)
-        new_item.quantity += quantity
-    if not item.stackable:
-        for _ in range(quantity):
-            mob.bag.append(new_item)
-
-bag_append(goblin, bronze_scimitar, 2)
-bag_append(goblin, coins, 100)
-bag_append(goblin, coins, 200)
-print(f'{goblin.info.name} bag:\n{goblin.bag}')
+if __name__ == '__main__':
+    print('Please run rs3.py instead.')
