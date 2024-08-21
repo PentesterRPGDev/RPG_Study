@@ -69,6 +69,8 @@ class Bag:
         '''
         for bag_item in char.bag:
             if bag_item.name == item.name:
+                if bag_item.quantity < quantity:
+                    return False
                 if item.stackable:
                     bag_item.quantity -= quantity
                     return True
@@ -78,12 +80,28 @@ class Bag:
                     return True
                 break
         else:
-            print(f'Bag has no {item.name}.')
             return False
 
-Bag.append(goblin, coins, 4)
-Bag.remove(goblin, coins, 4)
-print(goblin.bag)
+    @staticmethod
+    def check_item(char: Player | Monster, item: Item, quantity: int | None) -> bool:
+        '''
+        Check if item exists in character bag.
+        Return true or false.
+        '''
+        if quantity is None:
+            for bag_item in char.bag:
+                if bag_item.name == item.name:
+                    return True
+            return False
+        if quantity is not None:
+            for bag_item in char.bag:
+                if bag_item.name == item.name and bag_item.quantity == quantity:
+                    return True
+            return False
+
+Bag.append(goblin, coins, 10)
+check = Bag.check_item(goblin, coins, 10)
+print(check)
 
 if __name__ == '__main__':
     print('Please run rs3.py instead.')
