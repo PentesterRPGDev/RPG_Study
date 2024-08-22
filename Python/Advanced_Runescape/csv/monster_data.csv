@@ -1,4 +1,4 @@
-name, info, membership, health, attack, strength, defense, health_xp, combat_xp
+name,examine,membership,health,attack,strength,defense,health_xp,combat_xp
 Goblin, An ugly green creature, False, 5, 1, 1, 1, 5, 12.5
 Spider, Incey wincey, False, 2, 1, 1, 1, 2, 5
 Chicken, Yep. Definitely a chicken, False, 3, 1, 1, 1, 3, 7.5
